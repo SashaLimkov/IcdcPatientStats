@@ -5,3 +5,4 @@ from .CardiovascularSystem import *
 from .UrinarySystem import *
 from .MultiOrganFailure import *
 from .RespiratorySystem import *
+from .ImmuneSystem import *
