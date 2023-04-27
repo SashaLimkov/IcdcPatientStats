@@ -10,9 +10,8 @@ patient_router = Router()
 
 
 @patient_router.get("/{patient_id}", response=PatientOut)
-def get_patient_by_patient_id(request, patient_id:str):
+def get_patient_by_patient_id(request, patient_id: str):
     return get_patient_obj_by_patient_id(patient_id=patient_id)
-
 
 
 @patient_router.get("/all_patients/", response=List[PatientOut])
@@ -21,25 +20,25 @@ def get_all_patients(request):
     return qs
 
 
-
 @patient_router.post("/", response=PatientOut)
-def add_patient(request, payload:PatientIn):
+def add_patient(request, payload: PatientIn):
     patient = patient_data.create_patient(**payload.dict())
     return patient
 
+
 @patient_router.put("/")
 def update_patient_by_patient_id(request, payload: PatientPutOrDelete):
-    if patient:=get_patient_obj(payload=payload):
+    if patient := get_patient_obj(payload=payload):
         patient = patient_data.update_patient(patient, payload.dict())
     return patient
 
+
 @patient_router.delete("/")
 def delete_patient_by_patient_id(request, payload: PatientPutOrDelete):
-    if patient:=get_patient_obj(payload=payload):
+    if patient := get_patient_obj(payload=payload):
         patient.delete()
         return {"success": True}
     return patient
-
 
 
 def get_patient_obj(payload: PatientPutOrDelete):
@@ -47,6 +46,6 @@ def get_patient_obj(payload: PatientPutOrDelete):
     patient_id = payload_dict.get("patient_id", "")
     return get_patient_obj_by_patient_id(patient_id=patient_id)
 
-def get_patient_obj_by_patient_id(patient_id:str):
+
+def get_patient_obj_by_patient_id(patient_id: str):
     return get_object_or_404(Patient, patient_id=patient_id)
- 
