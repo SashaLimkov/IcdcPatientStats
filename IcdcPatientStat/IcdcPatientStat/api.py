@@ -1,6 +1,14 @@
 from ninja import NinjaAPI, Schema
 
-from api.routers import cvs_router, cns_router, is_router, mof_router, patient_router, rs_router, us_router
+from api.routers import (
+    cvs_router,
+    cns_router,
+    is_router,
+    mof_router,
+    patient_router,
+    rs_router,
+    us_router,
+)
 
 api = NinjaAPI()
 

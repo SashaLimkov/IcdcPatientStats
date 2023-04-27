@@ -8,7 +8,10 @@ class CentralNervousSystem(TimeBasedModel):
         verbose_name_plural = "Записи центральной нервной системы"
 
     patient = models.ForeignKey(
-        Patient, on_delete=models.CASCADE, related_name="cns_collection", verbose_name="Пациент"
+        Patient,
+        on_delete=models.CASCADE,
+        related_name="cns_collection",
+        verbose_name="Пациент",
     )
     points = models.IntegerField("Результаты оценки по шкале ком Глазго")
     description = models.CharField("Описание результатов", max_length=512)
