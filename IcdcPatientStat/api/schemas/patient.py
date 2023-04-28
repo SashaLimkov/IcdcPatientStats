@@ -13,15 +13,12 @@ PatientIn = create_schema(
         "empz",
     ],
 )
-
-
 class PatientPutOrDelete(Schema):
     fio: str = None
     patient_id: str
     ilness_history_num: str = None
     ema: str = None
     empz: str = None
-
 
 PatientOut.__name__ = "PatientOut"
 PatientIn.__name__ = "PatientIn"
