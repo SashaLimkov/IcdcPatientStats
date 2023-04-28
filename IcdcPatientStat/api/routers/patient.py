@@ -46,37 +46,42 @@ def delete_patient_by_patient_id(request, payload: PatientPutOrDelete):
         return {"success": True}
     return patient
 
-@patient_router.get("/mof_list/{patient_id}", response=MOFOut|List[MOFOut])
-def get_patient_mof(request, patient_id:str):
+
+@patient_router.get("/mof_list/{patient_id}", response=MOFOut | List[MOFOut])
+def get_patient_mof(request, patient_id: str):
     patient = get_patient_obj_by_patient_id(patient_id=patient_id)
     return patient.mof_collection.all().order_by("-created_at")
 
-@patient_router.get("/us_list/{patient_id}", response=USOut|List[USOut])
-def get_patient_us(request, patient_id:str):
+
+@patient_router.get("/us_list/{patient_id}", response=USOut | List[USOut])
+def get_patient_us(request, patient_id: str):
     patient = get_patient_obj_by_patient_id(patient_id=patient_id)
     return patient.urin_collection.all().order_by("-created_at")
 
-@patient_router.get("/is_list/{patient_id}", response=ISOut|List[ISOut])
-def get_patient_is(request, patient_id:str):
+
+@patient_router.get("/is_list/{patient_id}", response=ISOut | List[ISOut])
+def get_patient_is(request, patient_id: str):
     patient = get_patient_obj_by_patient_id(patient_id=patient_id)
     return patient.is_collection.all().order_by("-created_at")
 
-@patient_router.get("/cns_list/{patient_id}", response=CNSOut|List[CNSOut])
-def get_patient_cns(request, patient_id:str):
+
+@patient_router.get("/cns_list/{patient_id}", response=CNSOut | List[CNSOut])
+def get_patient_cns(request, patient_id: str):
     patient = get_patient_obj_by_patient_id(patient_id=patient_id)
     return patient.cns_collection.all().order_by("-created_at")
 
 
-@patient_router.get("/cs_list/{patient_id}", response=CSOut|List[CSOut])
-def get_patient_cs(request, patient_id:str):
+@patient_router.get("/cs_list/{patient_id}", response=CSOut | List[CSOut])
+def get_patient_cs(request, patient_id: str):
     patient = get_patient_obj_by_patient_id(patient_id=patient_id)
     return patient.cs_collection.all().order_by("-created_at")
 
 
-@patient_router.get("/rs_list/{patient_id}", response=RSOut|List[RSOut])
-def get_patient_rs(request, patient_id:str):
+@patient_router.get("/rs_list/{patient_id}", response=RSOut | List[RSOut])
+def get_patient_rs(request, patient_id: str):
     patient = get_patient_obj_by_patient_id(patient_id=patient_id)
     return patient.rs_collection.all().order_by("-created_at")
+
 
 def get_patient_obj(payload: PatientPutOrDelete):
     payload_dict = payload.dict()
@@ -86,4 +91,3 @@ def get_patient_obj(payload: PatientPutOrDelete):
 
 def get_patient_obj_by_patient_id(patient_id: str):
     return get_object_or_404(Patient, patient_id=patient_id)
-

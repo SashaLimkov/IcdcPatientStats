@@ -12,6 +12,7 @@ class UrinarySystem(TimeBasedModel):
         on_delete=models.CASCADE,
         related_name="urin_collection",
         verbose_name="Пациент",
+        to_field="patient_id",
     )
     diurez = models.IntegerField("Суточный диурез")
     infuzyy = models.IntegerField("Инфузии")
