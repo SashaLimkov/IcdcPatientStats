@@ -4,3 +4,12 @@ from ninja.orm import create_schema
 
 MOFOut = create_schema(MultiOrganFailure)
 MOFOut.__name__ = "MOFOut"
+
+MOFin = create_schema(
+    MultiOrganFailure,
+    fields=[
+        "patient",
+        "sofa"
+    ],
+)
+MOFin.__name__ = "MOFin"
