@@ -1,3 +1,3 @@
-from django.test import TestCase
-
-# Create your tests here.
+a = 15 // (16 % 7)
+b = 34 % a *5 - 29 % 5 * 2
+print(a + b)

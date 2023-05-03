@@ -8,7 +8,10 @@ class ImmuneSystem(TimeBasedModel):
         verbose_name_plural = "Записи имунной системы"
 
     patient = models.ForeignKey(
-        Patient, on_delete=models.CASCADE, related_name="is_collection", verbose_name="Пациент"
+        Patient,
+        on_delete=models.CASCADE,
+        related_name="is_collection",
+        verbose_name="Пациент",
     )
     temperature = models.FloatField("Температуры в градусах Цельсия")
     description = models.CharField("Описание результатов", max_length=512)
