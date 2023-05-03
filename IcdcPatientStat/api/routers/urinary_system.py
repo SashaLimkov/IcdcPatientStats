@@ -30,7 +30,7 @@ def add_urinary_system_note(request, payload: USin):
     return us.create_us(payload_dict)
 
 @us_router.put("/", response=USOut)
-def update_patient_by_patient_id(request, payload: USPut):
+def update_us_patient_id(request, payload: USPut):
     result=None
     if cns_note := get_us_nte_obj(pk=payload.dict().get("id", -1)):
         result = update_obj(cns_note, payload.dict())

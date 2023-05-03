@@ -30,7 +30,7 @@ def add_mof_note(request, payload: MOFin):
     return mof.create_mof(payload_dict)
 
 @mof_router.put("/", response=MOFOut)
-def update_patient_by_patient_id(request, payload: MOFPut):
+def update_mof_patient_id(request, payload: MOFPut):
     result=None
     if cns_note := get_mof_nte_obj(pk=payload.dict().get("id", -1)):
         result = update_obj(cns_note, payload.dict())

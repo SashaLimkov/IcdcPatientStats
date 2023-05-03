@@ -30,7 +30,7 @@ def add_imunne_system_note(request, payload: ISin):
     return ims.create_is(payload_dict)
 
 @is_router.put("/", response=ISOut)
-def update_patient_by_patient_id(request, payload: ISPut):
+def update_is_patient_id(request, payload: ISPut):
     result=None
     if cns_note := get_imunne_nte_obj(pk=payload.dict().get("id", -1)):
         result = update_obj(cns_note, payload.dict())
