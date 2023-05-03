@@ -7,8 +7,8 @@ from api.schemas.imunne_system import ISOut
 from api.schemas.central_nervous_system import CNSOut
 from api.schemas.cardiovascular_system import CSOut
 from api.schemas.respiratory_system import RSOut
-from api.schemas.patient import PatientOut, PatientIn, PatientPutOrDelete
-from backend.models import Patient
+from api.schemas.patient import PatientOut, PatientIn, PatientPutOrDelete, PatientHistory
+from backend.models import Patient   
 from backend.services import patient as patient_data
 
 
@@ -18,6 +18,25 @@ patient_router = Router()
 @patient_router.get("/{patient_id}", response=PatientOut)
 def get_patient_by_patient_id(request, patient_id: str):
     return get_patient_obj_by_patient_id(patient_id=patient_id)
+
+@patient_router.get("/{patient_id}/full/", response=PatientHistory)
+def get_patient_history_by_patient_id(request, patient_id: str):
+    patient = get_patient_obj_by_patient_id(patient_id=patient_id)
+    mof =  get_patient_mof(request=request, patient_id=patient_id)
+    us =  get_patient_us(request=request, patient_id=patient_id)
+    isys =  get_patient_is(request=request, patient_id=patient_id)
+    cns =  get_patient_cns(request=request, patient_id=patient_id)
+    cs =  get_patient_cs(request=request, patient_id=patient_id)
+    rs =  get_patient_rs(request=request, patient_id=patient_id)
+    return {
+        "patient": patient,
+        "imunne_system":list(isys),
+        "urinary_system":list(us),
+        "mof":list(mof),
+        "central_nervous_system":list(cns),
+        "cardiovascular_system":list(cs),
+        "respiratory_system":list(rs) 
+    }
 
 
 @patient_router.get("/all_patients/", response=List[PatientOut])
@@ -87,6 +106,7 @@ def get_patient_obj(payload: PatientPutOrDelete):
     payload_dict = payload.dict()
     patient_id = payload_dict.get("patient_id", "")
     return get_patient_obj_by_patient_id(patient_id=patient_id)
+
 
 
 def get_patient_obj_by_patient_id(patient_id: str):
