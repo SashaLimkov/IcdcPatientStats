@@ -21,12 +21,14 @@ def get_all_cns_notes(request):
 def get_cns_note(request, pk: int):
     return get_cns_nte_obj(pk=pk)
 
+
 @cns_router.put("/", response=CNSOut)
 def update_cns_patient_id(request, payload: CNSPut):
     result=None
     if cns_note := get_cns_nte_obj(pk=payload.dict().get("id", -1)):
         result = update_obj(cns_note, payload.dict())
     return result
+
 
 @cns_router.delete("/{pk}")
 def delete_cns_note(request, pk: int):
