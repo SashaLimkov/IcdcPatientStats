@@ -14,3 +14,8 @@ CNSin = create_schema(
 )
 CNSin.__name__ = "CNSin"
 
+class CNSPut(Schema):
+    id: int
+    patient_id: str = None
+    points: int = None
+    description: str = None

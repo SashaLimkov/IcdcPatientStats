@@ -14,3 +14,9 @@ USin = create_schema(
     ],
 )
 USin.__name__ = "USin"
+
+class USPut(Schema):
+    id: str
+    patient_id: str = None
+    diurez: int = None
+    infuzyy: int = None

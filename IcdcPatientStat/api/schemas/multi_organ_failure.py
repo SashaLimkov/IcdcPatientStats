@@ -13,3 +13,8 @@ MOFin = create_schema(
     ],
 )
 MOFin.__name__ = "MOFin"
+
+class MOFPut(Schema):
+    id: int
+    patient_id: str = None
+    sofa: int = None

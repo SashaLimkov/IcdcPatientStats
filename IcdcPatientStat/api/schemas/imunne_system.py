@@ -13,3 +13,9 @@ ISin = create_schema(
     ],
 )
 ISin.__name__ = "ISin"
+
+class ISPut(Schema):
+    id: int
+    patient_id: str = None
+    temperature: float = None
+    description: str = None

@@ -35,7 +35,7 @@ def add_patient(request, payload: PatientIn):
 @patient_router.put("/", response=PatientOut)
 def update_patient_by_patient_id(request, payload: PatientPutOrDelete):
     if patient := get_patient_obj(payload=payload):
-        patient = patient_data.update_patient(patient, payload.dict())
+        patient = patient_data.update_obj(patient, payload.dict())
     return patient
 
 

@@ -12,3 +12,4 @@ def create_cns(payload_dict: dict) -> CentralNervousSystem:
 
 def get_all_cns_notes():
     return CentralNervousSystem.objects.all()
+
