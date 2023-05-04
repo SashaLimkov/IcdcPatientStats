@@ -24,9 +24,10 @@ def add_cs_note(request, payload: RSin):
     payload_dict = payload.dict()
     return rs.create_rs(payload_dict)
 
+
 @rs_router.put("/", response=RSOut)
 def update_cns_patient_id(request, payload: RSPut):
-    result=None
+    result = None
     if cns_note := get_rs_nte_obj(pk=payload.dict().get("id", -1)):
         result = update_obj(cns_note, payload.dict())
     return result

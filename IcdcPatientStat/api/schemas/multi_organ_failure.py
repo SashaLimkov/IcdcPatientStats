@@ -7,12 +7,10 @@ MOFOut.__name__ = "MOFOut"
 
 MOFin = create_schema(
     MultiOrganFailure,
-    fields=[
-        "patient",
-        "sofa"
-    ],
+    fields=["patient", "sofa"],
 )
 MOFin.__name__ = "MOFin"
+
 
 class MOFPut(Schema):
     id: int

@@ -8,7 +8,6 @@ from backend.services import central_nervous_system as cns
 from api.schemas.central_nervous_system import CNSOut, CNSin
 
 
-
 cns_router = Router()
 
 
@@ -24,7 +23,7 @@ def get_cns_note(request, pk: int):
 
 @cns_router.put("/", response=CNSOut)
 def update_cns_patient_id(request, payload: CNSPut):
-    result=None
+    result = None
     if cns_note := get_cns_nte_obj(pk=payload.dict().get("id", -1)):
         result = update_obj(cns_note, payload.dict())
     return result

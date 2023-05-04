@@ -29,12 +29,14 @@ def add_urinary_system_note(request, payload: USin):
     payload_dict = payload.dict()
     return us.create_us(payload_dict)
 
+
 @us_router.put("/", response=USOut)
 def update_us_patient_id(request, payload: USPut):
-    result=None
+    result = None
     if cns_note := get_us_nte_obj(pk=payload.dict().get("id", -1)):
         result = update_obj(cns_note, payload.dict())
     return result
+
 
 def get_us_nte_obj(pk: int):
     return get_object_or_404(UrinarySystem, pk=pk)

@@ -33,6 +33,7 @@ class PatientPutOrDelete(Schema):
 PatientOut.__name__ = "PatientOut"
 PatientIn.__name__ = "PatientIn"
 
+
 class PatientHistory(Schema):
     patient: PatientOut
     imunne_system: List[ISOut] = None

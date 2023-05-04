@@ -7,12 +7,10 @@ ISOut.__name__ = "ISOut"
 
 ISin = create_schema(
     ImmuneSystem,
-    fields=[
-        "patient",
-        "temperature"
-    ],
+    fields=["patient", "temperature"],
 )
 ISin.__name__ = "ISin"
+
 
 class ISPut(Schema):
     id: int

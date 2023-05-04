@@ -7,12 +7,10 @@ CNSOut.__name__ = "CNSOut"
 
 CNSin = create_schema(
     CentralNervousSystem,
-    fields=[
-        "patient",
-        "points"
-    ],
+    fields=["patient", "points"],
 )
 CNSin.__name__ = "CNSin"
+
 
 class CNSPut(Schema):
     id: int

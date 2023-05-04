@@ -8,14 +8,7 @@ CSOut = create_schema(
 CSOut.__name__ = "CSOut"
 
 CSin = create_schema(
-    CardiovascularSystem,
-    fields=[
-        "patient",
-        "pulse",
-        "chss",
-        "ad_up",
-        "ad_down"
-    ]
+    CardiovascularSystem, fields=["patient", "pulse", "chss", "ad_up", "ad_down"]
 )
 CSin.__name__ = "CSin"
 

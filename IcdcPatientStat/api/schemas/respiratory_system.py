@@ -5,6 +5,7 @@ from ninja.orm import create_schema
 RSOut = create_schema(RespiratorySystem)
 RSOut.__name__ = "RSOut"
 
+
 class RSin(Schema):
     patient: str
     system_type: str
