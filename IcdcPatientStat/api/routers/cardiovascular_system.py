@@ -21,6 +21,9 @@ def get_cs_note(request, pk: int):
 
 @cvs_router.post("/", response=CSOut)
 def add_cs_note(request, payload: CSin):
+    """
+    Добавление сердечно сосудистой записи
+    """
     payload_dict = payload.dict()
     return cs.create_cs(payload_dict)
 

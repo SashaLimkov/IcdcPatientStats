@@ -12,9 +12,11 @@ from api.schemas.patient import (
     PatientIn,
     PatientPutOrDelete,
     PatientHistory,
+    AddAll
 )
 from backend.models import Patient
 from backend.services import patient as patient_data
+from backend import services
 
 
 patient_router = Router()
@@ -51,9 +53,49 @@ def get_all_patients(request):
     return qs
 
 
+
+
 @patient_router.post("/", response=PatientOut)
 def add_patient(request, payload: PatientIn):
     patient = patient_data.create_patient(**payload.dict())
+    return patient
+
+@patient_router.post("/full/", response=PatientOut)
+def add_patient_full(request, payload: AddAll):
+    """
+    Нужно передавать пациента всегда по схеме PatientIn.
+    Создает пациента, если его не было. Либо получает уже существующего.
+    к данному пациенту привязывает набор записей о состоянии его систем.
+    """
+    payload_dict = payload.dict()
+    print(payload_dict.get("patient"))
+    patient = get_patient_obj_by_patient_id(patient_id=payload_dict.get("patient").get("patient_id"))
+    if not patient:
+        patient = patient_data.create_patient(**payload_dict.get("patient"))
+    if payload_dict.get("cardiovascular_system"):
+        r = payload_dict.get("cardiovascular_system")
+        r["patient"]=patient.patient_id
+        services.create_cs(r)
+    if payload_dict.get("central_nervous_system"):
+        r = payload_dict.get("central_nervous_system")
+        r["patient"]=patient.patient_id
+        services.create_cns(r)
+    if payload_dict.get("urinary_system"):
+        r = payload_dict.get("urinary_system")
+        r["patient"]=patient.patient_id
+        services.create_us(r)
+    if payload_dict.get("respiratory_system"):
+        r = payload_dict.get("respiratory_system")
+        r["patient"]=patient.patient_id
+        services.create_rs(r)
+    if payload_dict.get("mof"):
+        r = payload_dict.get("mof")
+        r["patient"]=patient.patient_id
+        services.create_mof(r)
+    if payload_dict.get("imunne_system"):
+        r = payload_dict.get("imunne_system")
+        r["patient"]=patient.patient_id
+        services.create_is(r)
     return patient
 
 
